@@ -1,27 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>H79 Roblox Staff Member Application</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H79 Roblox Staff Application</title>
 <style>
-body{margin:0;background:#0b0d12;color:#f2f3f5;font-family:Arial,sans-serif}.wrap{max-width:760px;margin:40px auto;padding:20px}.card{background:#151821;border:1px solid #2a2f3a;border-radius:16px;padding:30px;box-shadow:0 12px 40px #0006}h1{margin:0 0 8px;font-size:30px}p{color:#aeb4c0}.dates{background:#202532;border-radius:10px;padding:14px;margin:20px 0;color:#dce1ea}.field{margin:18px 0}label{display:block;font-weight:700;margin-bottom:8px}input,textarea,select{width:100%;box-sizing:border-box;background:#0e1117;border:1px solid #343a46;color:white;border-radius:9px;padding:12px;font-size:15px}textarea{min-height:100px;resize:vertical}.checks label{font-weight:400;margin:9px 0}.checks input{width:auto;margin-right:8px}.submit{width:100%;border:0;border-radius:9px;padding:13px;background:#5865f2;color:white;font-size:16px;font-weight:700;cursor:pointer}.success{display:none;margin-top:16px;padding:14px;background:#19351f;border-radius:9px;color:#9ff0ad}.note{font-size:13px;color:#8f96a3;margin-top:12px}
-</style></head>
-<body><div class="wrap"><div class="card">
-<h1>H79 Roblox Staff Member Application</h1><p>Fill out this application to apply for a Staff Member position in H79 Roblox.</p>
-<div class="dates"><b>Application dates</b><br>Start: 4-10-2026 &nbsp; • &nbsp; End: 10-10-2026<br><b>Minimum age: 14</b></div>
-<form id="app">
-<div class="field"><label>Name</label><input required placeholder="Your name"></div>
-<div class="field"><label>Age</label><input required type="number" min="14" placeholder="14+"></div>
-<div class="field"><label>Discord Username</label><input required placeholder="username or username#0000"></div>
-<div class="field"><label>How often can you be online for duty?</label><select required><option value="">Select one</option><option>Less than 1 hour a day</option><option>1–2 hours a day</option><option>2–4 hours a day</option><option>4+ hours a day</option><option>Mostly on weekends</option></select></div>
-<div class="field checks"><label>What personal device do you have?</label><label><input type="checkbox"> Phone</label><label><input type="checkbox"> Laptop</label><label><input type="checkbox"> Computer</label></div>
-<div class="field"><label>Previous staff/moderation experience</label><textarea placeholder="Tell us about your previous experience..."></textarea></div>
-<div class="field"><label>Why do you want to become a Staff Member?</label><textarea required></textarea></div>
-<div class="field"><label>What would you do if a member breaks a server rule?</label><textarea required></textarea></div>
-<div class="field"><label>How active are you on Discord?</label><select required><option value="">Select one</option><option>Low</option><option>Medium</option><option>High</option><option>Very High</option></select></div>
-<div class="field checks"><label><input type="checkbox" required> I confirm that my information is truthful and I am at least 14 years old.</label></div>
-<button class="submit">Submit Staff Member Application</button><div class="success" id="success">Application form submitted successfully! (Demo only — connect a backend/Discord webhook to receive applications.)</div>
-</form><div class="note">H79 Roblox • Staff Member Applications</div>
-</div></div>
-<script>document.getElementById('app').addEventListener('submit',e=>{e.preventDefault();document.getElementById('success').style.display='block';e.target.reset()})</script>
-</body></html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0b0d12 0%, #1a1f2e 100%);
+  color: #f2f3f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 20px;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #5865f2, #7289da);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.tagline {
+  color: #aeb4c0;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  background: rgba(21, 24, 33, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(88, 101, 242, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #5865f2, #7289da);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: #aeb4c0;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.dates-banner {
+  background: linear-gradient(135deg, rgba(88, 101, 242, 0.2), rgba(114, 137, 218, 0.2));
+  border-left: 4px solid #5865f2;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(88, 101, 242, 0.3);
+}
+
+.dates-banner b {
+  color: #5865f2;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dates-banner p {
+  color: #dce1ea;
+  line-height: 1.8;
+  margin: 5px 0;
+}
+
+.field {
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #dce1ea;
+  font-size: 15px;
+}
+
+input, textarea, select {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(14, 17, 23, 0.6);
+  border: 1px solid rgba(88, 101, 242, 0.3);
+  color: #f2f3f5;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #5865f2;
+  box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
+  background: rgba(14, 17, 23, 0.9);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checks {
+  background: rgba(88, 101, 242, 0.05);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(88, 101, 242, 0.2);
+}
+
+.checks label {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.checks input {
+  width: auto;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: #5865f2;
+}
+
+.submit {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  background: linear-gradient(135deg, #5865f2, #7289da);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+.submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(88, 101, 242, 0.4);
+}
+
+.submit:active {
+  transform: translateY(0);
+}
+
+.success {
+  display: none;
+  margin-top: 20px;
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(25, 53, 31, 0.8), rgba(50, 80, 50, 0.8));
+  border-radius: 10px;
+  border-left: 4px solid #9ff0ad;
+  color: #9ff0ad;
+  animation: slideIn 0.3s ease-out;
+  border: 1px solid rgba(159, 240, 173, 0.3);
+}
+
+.error {
+  display: none;
+  margin-top: 20px;
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(240, 71, 71, 0.2), rgba(255, 100, 100, 0.2));
+  border-radius: 10px;
+  border-left: 4px solid #f04747;
+  color: #f04747;
+  animation: slideIn 0.3s ease-out;
+  border: 1px solid rgba(240, 71, 71, 0.3);
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(88, 101, 242, 0.2);
+  color: #8f96a3;
+  font-size: 13px;
+}
+
+.footer a {
+  color: #5865f2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #7289da;
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">H79</div>
+  <p class="tagline">Roblox Staff Application</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h1>Join Our Team</h1>
+    <p class="subtitle">Apply to become a staff member in H79 Roblox and help us build an amazing community.</p>
+    
+    <div class="dates-banner">
+      <b>📋 Application Window</b>
+      <p><strong>Start:</strong> October 4, 2026</p>
+      <p><strong>End:</strong> October 10, 2026</p>
+      <p><strong>Minimum Age:</strong> 14 years old</p>
+    </div>
+
+    <form id="app">
+      <div class="field">
+        <label>👤 Full Name</label>
+        <input type="text" required placeholder="Your full name">
+      </div>
+
+      <div class="field">
+        <label>🎂 Age</label>
+        <input type="number" required min="14" placeholder="Must be 14 or older">
+      </div>
+
+      <div class="field">
+        <label>💬 Discord Username</label>
+        <input type="text" required placeholder="username or username#0000">
+      </div>
+
+      <div class="field">
+        <label>⏰ How often can you be online for duty?</label>
+        <select required>
+          <option value="">Select availability</option>
+          <option>Less than 1 hour a day</option>
+          <option>1–2 hours a day</option>
+          <option>2–4 hours a day</option>
+          <option>4+ hours a day</option>
+          <option>Mostly on weekends</option>
+        </select>
+      </div>
+
+      <div class="field checks">
+        <label>📱 What devices do you have?</label>
+        <label><input type="checkbox"> Phone</label>
+        <label><input type="checkbox"> Laptop</label>
+        <label><input type="checkbox"> Desktop PC</label>
+      </div>
+
+      <div class="field">
+        <label>🏆 Previous moderation experience</label>
+        <textarea placeholder="Tell us about any previous staff or moderation roles..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>❓ Why do you want to become a Staff Member?</label>
+        <textarea required placeholder="Share your motivation and goals..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>⚖️ How would you handle a rule-breaker?</label>
+        <textarea required placeholder="Describe your approach to enforcing server rules..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>💬 Discord Activity Level</label>
+        <select required>
+          <option value="">Select activity level</option>
+          <option>Low (rare activity)</option>
+          <option>Medium (few times a week)</option>
+          <option>High (daily)</option>
+          <option>Very High (multiple times daily)</option>
+        </select>
+      </div>
+
+      <div class="field checks">
+        <label>
+          <input type="checkbox" required>
+          I confirm my information is truthful and I'm at least 14 years old.
+        </label>
+      </div>
+
+      <button class="submit">Submit Application</button>
+      <div class="success" id="success">
+        ✅ <strong>Application Submitted!</strong><br>
+        Thank you for applying to H79 Roblox Staff. We'll review your application and contact you via Discord within 48 hours.
+      </div>
+      <div class="error" id="error"></div>
+    </form>
+
+    <div class="footer">
+      H79 Roblox • Staff Applications 2026 • <a href="#">Contact Support</a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('app').addEventListener('submit', e => {
+  e.preventDefault();
+  
+  const errorDiv = document.getElementById('error');
+  const successDiv = document.getElementById('success');
+  
+  errorDiv.style.display = 'none';
+  
+  // Form validation
+  const form = e.target;
+  const formData = new FormData(form);
+  
+  // Check at least one device is selected
+  const phones = form.querySelectorAll('.checks input[type="checkbox"]');
+  const hasDevice = Array.from(phones).some(cb => cb.checked);
+  
+  if (!hasDevice && phones.length > 0) {
+    errorDiv.textContent = '❌ Please select at least one device.';
+    errorDiv.style.display = 'block';
+    return;
+  }
+  
+  successDiv.style.display = 'block';
+  form.reset();
+  
+  // Scroll to success message
+  successDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});
+</script>
+</body>
+</html>
